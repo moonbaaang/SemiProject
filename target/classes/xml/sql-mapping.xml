@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="bo">
+<!-- 
+ desc proj;
+ Name                                      Null?    Type
+
+ SEQ                                       NOT NULL NUMBER(10)
+ WRITER                                    NOT NULL VARCHAR2(20)
+ TITLE                                     NOT NULL VARCHAR2(100)
+ CONTENT                                   NOT NULL VARCHAR2(4000)
+ VIEWCOUNT                                          NUMBER(10)
+  -->
+
+<select resultType="bo" id="boardlist">
+select * from proj order by seq desc 
+</select>
+
+<select resultType="bo" id="contents">
+select writer, title, contents from proj where title=${title} and seq=${seq} 
+</select>
+
+<insert id="write" parameterType="bo">
+insert into proj values(#{writer}, #{title}, #{content}, 0, seq.nextval)
+</insert>
+
+ 
+</mapper>
+
+
+
+

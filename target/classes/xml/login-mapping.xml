@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="log">
+ <!-- 
+ desc login;
+ Name                                      Null?    Type
+
+ ID                                        NOT NULL VARCHAR2(20)
+ PW                                        NOT NULL VARCHAR2(30)
+ NAME                                      NOT NULL VARCHAR2(20)
+ -->
+
+<!--  
+<select resultType="log" id="loginById" parameterType="log">
+select * from login
+where id=#{id} and pw=#{pw}
+</select>
+-->
+ 
+<select resultType="String" id="login" parameterType="log">
+select id from login
+where id=#{id} and pw=#{pw}
+</select>
+
+<select resultType="log" id="viewlogin" parameterType="log">
+select * from login
+where id=#{id} and pw=#{pw}
+</select>
+
+
+<insert id="insertmember">
+insert into login(id, pw, name)
+values(#{id}, #{pw}, #{name})
+
+</insert>
+
+ 
+</mapper>
+
+
+
+
