@@ -22,11 +22,27 @@ select * from proj order by seq desc
 select writer, title, contents from proj where title=${title} and seq=${seq} 
 </select>
 
-<insert id="write" parameterType="bo">
-insert into proj values(#{writer}, #{title}, #{content}, 0, seq.nextval)
+
+<insert id="insertboard" parameterType="bo">
+insert into proj values(seq.nextval, #{writer}, #{title}, #{content}, 0)
 </insert>
 
- 
+<select id="readboard" resultType="bo">
+select seq, writer, title, content, viewcount
+from proj
+where seq=#{seq}
+</select>
+
+<update id="updateboard">
+update proj
+set title=#{title}, content=#{content} where seq=#{seq}
+</update>
+
+<delete id="deleteboard">
+delete from proj
+where seq=#{seq}
+</delete>
+
 </mapper>
 
 

@@ -12,13 +12,13 @@
  NAME                                      NOT NULL VARCHAR2(20)
  -->
 
-<!--  
-<select resultType="log" id="loginById" parameterType="log">
+
+<select resultType="log" id="logincheck" parameterType="log">
 select * from login
 where id=#{id} and pw=#{pw}
 </select>
--->
- 
+
+ <!-- 
 <select resultType="String" id="login" parameterType="log">
 select id from login
 where id=#{id} and pw=#{pw}
@@ -28,12 +28,11 @@ where id=#{id} and pw=#{pw}
 select * from login
 where id=#{id} and pw=#{pw}
 </select>
+ -->
 
-
-<insert id="insertmember">
+<insert id="insert" parameterType="log">
 insert into login(id, pw, name)
 values(#{id}, #{pw}, #{name})
-
 </insert>
 
  

@@ -60,5 +60,12 @@ public class BoardVO {
 	public void setViewcount(int viewcount) {
 		this.viewcount = viewcount;
 	}
+
+	@Override
+	public String toString() {
+		return "BoardVO [seq=" + seq + ", writer=" + writer + ", title=" + title + ", content=" + content
+				+ ", viewcount=" + viewcount + "]";
+	}
+	
 	
 }

@@ -5,7 +5,6 @@ public class LoginVO {
 	String pw;
 	String name;
 
-	/*
 	public LoginVO() {}	
 
 	public LoginVO(String id, String pw, String name) {
@@ -14,8 +13,7 @@ public class LoginVO {
 		this.pw = pw;
 		this.name = name;
 	}
-	*/
-
+	
 	public String getId() {
 		return id;
 	}
@@ -33,6 +31,11 @@ public class LoginVO {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "LoginVO [id=" + id + ", pw=" + pw + ", name=" + name + "]";
 	}
 	
 	

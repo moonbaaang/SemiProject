@@ -34,15 +34,12 @@ public class BoardController {
 	@Autowired
 	BoardService service;
 	
-//	@Autowired
-//	LoginVO logvo;
-	
 	@Autowired
 	LoginService logservice;
 	
 	// main 페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home() {
+	public String main() {
 		return "main";
 	}
 
@@ -52,42 +49,96 @@ public class BoardController {
 		return "loginform";
 	}
 	
-	// 로그인처리
-/*	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public ModelAndView login(@ModelAttribute LoginVO vo, RedirectAttributes rda) {
-		boolean result = logservice.LoginCheck(vo);
+/*	// 로그인처리
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	public ModelAndView loginCheck(@ModelAttribute LoginVO vo,
+			HttpServletRequest request, HttpSession session) {
+		session = request.getSession();
+		boolean result = logservice.LoginCheck(vo, session);
 		ModelAndView mv = new ModelAndView();
 		if(result == true) {
 			mv.setViewName("home");
-			//mv.addObject("msg", "로그인에 성공하셨습니다.");
+			mv.addObject("msg", "success");
 		} else {
-			rda.setViewName("loginform");
-			mv.addObject("msg", "로그인에 실패하셨습니다.");
+			mv.setViewName("loginform");
+			mv.addObject("msg", "failure");
 		}
 		return mv;
 	}
-*/	
+*/
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	public ModelAndView loginCheck(@ModelAttribute LoginVO vo,
+			HttpServletRequest request) throws Exception{
+		HttpSession session = request.getSession();
+		LoginVO login = logservice.login(vo);
+		ModelAndView mv = new ModelAndView();
+		if(login == null) {
+			mv.addObject("msg", "failure");
+			mv.setViewName("loginform");
+		} else {
+			session.setAttribute("member", login);
+			mv.addObject("msg", "success");
+			mv.setViewName("home");
+		}
+		return mv;
+	}
+	
 	
 	// 회원가입 페이지
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public String signupGet() {
+	public String signupGet() throws Exception {
 		return "signup";
 	}
 	
-	//회원가입
+	//회원가입 처리
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public String signupPost(LoginVO loginvo) {
-		logservice.insertMember(loginvo);
-		return "redirect:/login";
+	public String signupPost(@ModelAttribute LoginVO vo) throws Exception {		
+		logservice.insertMember(vo);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("msg", "회원가입이 완료되었습니다.");
+		return "loginform";
 	}
+
 	
-	// 게시판 
-	@RequestMapping("/boardlist")
+// --------------------------------------------------------------------------------
+/*	
+	//메인홈페이지
+	@RequestMapping(value="/home", method=RequestMethod.GET)
+	public String home() {
+		return "home";
+	}
+*/	
+	// 강아지 게시판 
+	@RequestMapping("/dogboardlist")
 	public ModelAndView getBoardlist(){
 		List<BoardVO> list = service.getBoardList();
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("boardlist", list);
-		mv.setViewName("/board/boardlist");
+		mv.addObject("dogboardlist", list);
+		mv.setViewName("/board/dogboardlist");
 		return mv;
 	}
+	
+	// 게시글 추가
+	@RequestMapping(value="/dogboardwrite", method=RequestMethod.GET)
+	public String BoardwriteGet() {
+		return "/board/dogboardwrite";
+	}
+	
+	// 게시글 작성
+	@RequestMapping(value="/dogboardwrite", method=RequestMethod.POST)
+	public String BoardwritePost(@ModelAttribute BoardVO vo) {
+		service.insertBoard(vo);
+		return "redirect:/dogboardlist";
+	}
+
+	//게시글 수정
+	@RequestMapping(value="/dogboardupdate", method=RequestMethod.POST)
+	public String Boardupdate(@ModelAttribute BoardVO vo) {
+		service.updateBoard(vo);
+		return "redirect:/dogboardlist";
+	}
+	
+	//게시글 삭제
+	
+
 }

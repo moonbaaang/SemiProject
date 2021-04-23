@@ -23,4 +23,22 @@ public class BoardDAO {
 		List<BoardVO> list = session.selectList("bo.boardlist");
 		return list;
 	}
+	
+	public void insert(BoardVO vo) {
+		session.insert("bo.insertboard", vo);
+	}
+	
+	public BoardVO read(Integer seq) {
+		return session.selectOne("bo.readboard", seq);
+	}
+	
+	public void update(BoardVO vo) {
+		session.update("bo.updateboard", vo);
+	}
+
+	public void delete(Integer seq) {
+		session.delete("bo.deleteboard", seq);
+	}
+	
+
 }

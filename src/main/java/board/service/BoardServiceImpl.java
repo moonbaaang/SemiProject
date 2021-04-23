@@ -19,6 +19,26 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardVO> getBoardList() {
 		return dao.getBoardList();
 	}
+
+	@Override
+	public void insertBoard(BoardVO vo) {
+		dao.insert(vo);
+	}
+	
+	
+	public BoardVO readBoard(Integer seq) {
+		return dao.read(seq);
+	}
+
+	@Override
+	public void updateBoard(BoardVO vo) {
+		dao.update(vo);
+	}
+
+	@Override
+	public void deleteBoard(Integer seq) {
+		dao.delete(seq);
+	}
 	
 	
 }

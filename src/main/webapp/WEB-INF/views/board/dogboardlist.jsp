@@ -16,6 +16,14 @@ h1 {
 	background-color: #FA5858;
 }
 
+h3 {
+
+	text-align : center;
+	margin-left:auto; 
+    margin-right:auto;
+	background-color: #FA5858;
+}
+
 table {
     margin-left:auto; 
     margin-right:auto;
@@ -39,7 +47,7 @@ button{
 <script type="text/javascript">
 
 </script>
-<script src="/resources/jquery-3.2.1.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/jquery-3.2.1.min.js"></script>
 <script>
 $(document).ready(function(){
 
@@ -49,19 +57,20 @@ $(document).ready(function(){
 </head>
 <body>
 <div>
-	<h1>Arsenal FanPage</h1>
+	<h1>우리 강아지는요</h1>
+	<h3>각자의 반려견 이야기를 들려주세요</h3>
 </div>
 	<div>
 		<input type=button id=write value=글쓰기
-		onclick="location.href='<%=request.getContextPath() %>/board/boardwrite'">
+		onclick="location.href='<%=request.getContextPath() %>/dogboardwrite'">
 		<input type=button id=return value="메인페이지로 이동"
-		onclick="location.href='${pageContext.request.contextPath}/'">
+		onclick="location.href='<%=request.getContextPath() %>/home'">
 	</div>
 
 <div>
 	<table>
 		<tr bgcolor=#F6CECE><th>글번호</th><th>아이디</th><th>제목</th><th>조회수</th></tr>
-		<c:forEach items="${boardlist}" var="vo">
+		<c:forEach items="${dogboardlist}" var="vo">
 			<tr><td bgcolor=#F6CECE>${vo.seq }</td>
 			<td>${vo.writer }</td>
 			<td><a href="boardcontent">${vo.title }</a></td>
