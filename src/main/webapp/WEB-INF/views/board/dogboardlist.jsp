@@ -7,21 +7,54 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
-h1 {
-
-	text-align : center;
-	margin-left:auto; 
-    margin-right:auto;
-	background-color: #FA5858;
+* {
+  box-sizing: border-box;
+  font-family: 'Noto Sans KR', sans-serif;
+  border-radius: 5px;
 }
 
-h3 {
+h1{
+	text-align: center;
+}
+.home{
+	margin-top: 20px;
+	font-size:30px;
+	color: #1BBC9B;
+}
+.mungnyang{
+	font-size: 50px;
+	color: #1BBC9B;
+	margin-top: 10px;
+}
 
-	text-align : center;
-	margin-left:auto; 
-    margin-right:auto;
-	background-color: #FA5858;
+body {
+  margin: 0;
+  background-repeat:no-repeat;
+  background-position:50% 0%;
+  background-image: url("<%=request.getContextPath()%>/resources/images/login.jpg");
+}
+
+.contents_framework {
+    width: 500px;
+    background-color: #FFFFFF;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+    padding: 0px;
+    text-align: center;
+    border: none; 
+}
+
+.btn {
+  width: 200px;
+  font-size: 14px;
+  border: none;
+  padding: 10px;
+  width: 200px;
+  background-color: #1BBC9B;
+  margin:auto;
+  text-align: center;
+  color: white;
 }
 
 table {
@@ -56,16 +89,13 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<div>
-	<h1>우리 강아지는요</h1>
-	<h3>각자의 반려견 이야기를 들려주세요</h3>
-</div>
+
+<header>	
 	<div>
-		<input type=button id=write value=글쓰기
-		onclick="location.href='<%=request.getContextPath() %>/dogboardwrite'">
-		<input type=button id=return value="메인페이지로 이동"
-		onclick="location.href='<%=request.getContextPath() %>/home'">
+		<h1 class=home>우리 강아지는요</h1>
+		<h1 class=mungnyang>각자의 반려견 이야기를 들려주세요</h1>
 	</div>
+</header>
 
 <div>
 	<table>
@@ -73,11 +103,17 @@ $(document).ready(function(){
 		<c:forEach items="${dogboardlist}" var="vo">
 			<tr><td bgcolor=#F6CECE>${vo.seq }</td>
 			<td>${vo.writer }</td>
-			<td><a href="boardcontent">${vo.title }</a></td>
+			<td><a href="<%=request.getContextPath()%>/boardlist/${vo.seq}">${vo.title }</a></td>
 			<td>${vo.viewcount }</td></tr>
 		</c:forEach>
 	</table>
-</div>
+
+	<div class=contents_framework>
+		<input class=btn type=button id=write value=글쓰기
+		onclick="location.href='<%=request.getContextPath() %>/dogboardwrite'">
+		<input class=btn type=button id=return value="메인페이지로 이동"
+		onclick="location.href='<%=request.getContextPath() %>/home'">
+	</div>
 
 </body>
 </html>

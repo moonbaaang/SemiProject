@@ -18,6 +18,13 @@
 select * from proj order by seq desc 
 </select>
 
+<select id="page" parameterType="page" resultType="bo">
+	select seq, writer, title, viewcount
+	from (select rownum r, seq, writer, title, viewcount
+	from (select * from proj order by seq desc))
+	where r between #{pageNum} and #{cntPerPage}
+</select>
+
 <select resultType="bo" id="contents">
 select writer, title, contents from proj where title=${title} and seq=${seq} 
 </select>
@@ -33,16 +40,37 @@ from proj
 where seq=#{seq}
 </select>
 
+<!-- 
 <update id="updateboard">
 update proj
 set title=#{title}, content=#{content} where seq=#{seq}
 </update>
-
+ -->
+ 
 <delete id="deleteboard">
 delete from proj
 where seq=#{seq}
 </delete>
 
+<select id="count" resultType="int">
+select count(seq) from proj;
+</select>
+
+<select id="listpage" parameterType="hashMap" resultType="bo">
+select seq, title, writer, viewcount from proj
+order by seq desc
+limit #{displayPost}, #{postNum}
+</select>
+
+
+
+<select id="getoneboard" parameterType="int" resultType="bo">
+select * from proj where seq=#{seq}
+</select>
+
+<update id="updateboard" parameterType="int">
+update board set viewcount=viewcount+1 where seq=#{seq}
+</update>
 </mapper>
 
 

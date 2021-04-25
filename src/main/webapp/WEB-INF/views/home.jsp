@@ -121,12 +121,16 @@ a{
 <form>
 	<div class=boardlist>
 		<div class=dog>
-			<br><br><a class=atag href="<%=request.getContextPath() %>/dogboardlist">우리 강아지는요</a>
+			<br><br>
+			<a class=atag href="<%=request.getContextPath() %>/dogboardlist/${seq}">
+				우리 강아지는요
+			</a>
 		</div>
 		<div class=cat>
-			<br><br><a class=atag href="<%=request.getContextPath() %>/catboardlist">우리 고양이는요</a>
-		</div>
-		<div>
+			<br><br>
+			<a class=atag href="<%=request.getContextPath() %>/catboardlist/${seq}">
+				우리 고양이는요
+			</a>
 		</div>
 	</div>
 </form>

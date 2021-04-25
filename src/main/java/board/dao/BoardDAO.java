@@ -1,5 +1,6 @@
 package board.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import board.vo.BoardVO;
+import board.vo.PageVO;
 
 @Repository //("dao")
 public class BoardDAO {
@@ -21,6 +23,16 @@ public class BoardDAO {
 	
 	public List<BoardVO> getBoardList(){
 		List<BoardVO> list = session.selectList("bo.boardlist");
+		return list;
+	}
+	
+	public BoardVO getOneBoard(int seq) {
+		session.update("bo.updateBoard",seq);
+		return session.selectOne("bo.getOneBoard",seq);
+	}
+	
+	public List<BoardVO> getBoardList(PageVO vo){
+		List<BoardVO> list = session.selectList("bo.boardlist", vo);
 		return list;
 	}
 	
@@ -40,5 +52,15 @@ public class BoardDAO {
 		session.delete("bo.deleteboard", seq);
 	}
 	
-
+/*	public int count() throws Exception{
+		return session.selectOne("bo.count");
+	}
+	
+	public List listPage(int displayPost, int postNum) throws Exception{
+		HashMap data = new HashMap();
+		data.put("displayPost", displayPost);
+		data.put("postNum", postNum);
+		return session.selectList("bo.listpage", data);
+	}
+*/
 }

@@ -1,5 +1,7 @@
 package login;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +13,11 @@ public class LoginServiceImpl implements LoginService{
 	@Autowired
 	LoginDAO dao;
 	
-	public LoginVO login(LoginVO vo) {
-		return dao.login(vo);
+	public LoginVO login(String id, String pw) {
+		return dao.login(id, pw);
 	}
 	
-	@Override
+/*	@Override
 	public boolean LoginCheck(LoginVO vo, HttpSession session) {
 		boolean result = dao.logincheckDAO(vo);
 		if(result) {
@@ -25,7 +27,9 @@ public class LoginServiceImpl implements LoginService{
 		}
 		return result;
 	}
+*/ 
 
+	
 	@Override
 	public LoginVO viewLogin(LoginVO vo) {
 		return dao.loginviewDAO(vo);

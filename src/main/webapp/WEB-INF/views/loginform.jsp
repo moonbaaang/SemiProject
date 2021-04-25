@@ -1,46 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page session="true"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>login form</title>
+<title>멍냥멍냥 로그인</title>
 <script type="text/javascript">
-function btn(){
-	const id = document.getElementById("id").value;
-	if(id!=null){
-		alert(id+"회원님 로그인되었습니다.");
-	}
-}
 </script>
 <script src="<%=request.getContextPath() %>/resources/jquery-3.2.1.min.js"></script>
 <script>
 $(document).ready(function(){
-	$("#btn").click(function(){
-
-	var userid = $("#id").val();
-	var userpw = $("#pw").val();
-	
-	if(userid==""){
-		alert("아이디를 입력하세요.");
-		return;
+	var message = "<c:out value="${message}" />";
+	if(message!="" || message!=null){
+		alert(message);
 	}
-	if(userpw==""){
-		alert("비밀번호를 입력하세요.");
-		return;
-	}
-		
-		document.loginform.action="<%=request.getContextPath()%>/login";
-		document.loginform.submit();
-	}) 
-	
-	if (${msg}=="failure") {
-		alert("로그인에 실패하셨습니다.");
-	} else {
-		alert("로그인에 성공하셨습니다.")
-	}
-	
 });
 </script>
 <style type="text/css">
@@ -120,12 +95,13 @@ body {
 	<form name=loginform method=post>
 		<input type="text" name=id class=text placeholder=아이디>
 		<input type="password" name=pw class=text placeholder=비밀번호>
-		<input type="submit" value=로그인 class=btn>
+		<input type="submit" value=로그인 class=btn id=btn>
 	</form>
 </div>
-	<div class=signup>
-		아이디가 없으신가요? <a href="<%request.getContextPath(); %>/semi/signup">회원가입</a>
-	</div>
+<div class=signup>
+	아이디가 없으신가요? <a href="<%request.getContextPath(); %>/semi/signup">회원가입</a>
+</div>
+
 </body>
 </html>
 
@@ -150,4 +126,24 @@ body {
 	</table>
 		
 </form>
+
+
+
+
+ 	 	 $.ajax({
+		      url: "<%=request.getContextPath()%>/login",
+		      data: {'id':$("#id").val(), 'pw':$("#pw").val()},
+		      type: 'post',
+		      dataType:'json',
+		      success:{function(server){
+		    	if(success.result=="true"){
+	    			alert(server.id+"님 로그인하셨습니다.");
+		    		window.location.href="<%=request.getContextPath()%>/home";
+		    	} else {
+		    		alert("아이디 또는 비밀번호를 확인하세요.");
+		    	}
+		      }		 	
+	}) 
+	
+	
  -->

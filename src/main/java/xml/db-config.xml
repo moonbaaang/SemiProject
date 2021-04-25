@@ -12,6 +12,7 @@
 	<typeAliases>
 		<typeAlias type="board.vo.BoardVO" alias="bo"/>
 		<typeAlias type="login.LoginVO" alias="log"/>
+		<typeAlias type="board.vo.PageVO" alias="page"/>
 	</typeAliases> 
 	
 </configuration>

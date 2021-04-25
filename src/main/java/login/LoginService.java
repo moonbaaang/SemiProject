@@ -1,10 +1,12 @@
 package login;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 public interface LoginService {
-	public LoginVO login(LoginVO vo);
-	public boolean LoginCheck(LoginVO vo, HttpSession session);
-	public LoginVO viewLogin(LoginVO vo);
-	public int insertMember(LoginVO vo) throws Exception;
+	LoginVO login(String id, String pw);
+/*	boolean LoginCheck(LoginVO vo, HttpSession session);*/
+	LoginVO viewLogin(LoginVO vo);
+	int insertMember(LoginVO vo) throws Exception;
 }

@@ -13,10 +13,16 @@
  -->
 
 
-<select resultType="log" id="logincheck" parameterType="log">
+<select resultType="log" id="logincheck" >
 select * from login
 where id=#{id} and pw=#{pw}
 </select>
+
+<insert id="insert" parameterType="log">
+insert into login(id, pw, name)
+values(#{id}, #{pw}, #{name})
+</insert>
+
 
  <!-- 
 <select resultType="String" id="login" parameterType="log">
@@ -30,10 +36,6 @@ where id=#{id} and pw=#{pw}
 </select>
  -->
 
-<insert id="insert" parameterType="log">
-insert into login(id, pw, name)
-values(#{id}, #{pw}, #{name})
-</insert>
 
  
 </mapper>
