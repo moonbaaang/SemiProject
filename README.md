@@ -1,10 +1,19 @@
+<div align=center>
+    <img alt="html5" src ="https://img.shields.io/badge/html5-E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/>
+    <img alt="css3" src ="https://img.shields.io/badge/css3-1572B6.svg?&style=for-the-badge&logo=css3&logoColor=white"/>
+    <img alt="javascript" src ="https://img.shields.io/badge/javascript-F7DF1E.svg?&style=for-the-badge&logo=javascript&logoColor=white"/>
+    <img alt="jquery" src ="https://img.shields.io/badge/jquery-0769AD.svg?&style=for-the-badge&logo=jquery&logoColor=white"/>
+    <img alt="spring" src ="https://img.shields.io/badge/spring-6DB33F.svg?&style=for-the-badge&logo=spring&logoColor=white"/>
+    <img alt="apachetomcat" src ="https://img.shields.io/badge/apachetomcat-F8DC75.svg?&style=for-the-badge&logo=apachetomcat&logoColor=white"/>
+    <img alt="oracle" src ="https://img.shields.io/badge/oracle-F80000.svg?&style=for-the-badge&logo=oracle&logoColor=white"/>
+    <img alt="java" src ="https://img.shields.io/badge/java-007396.svg?&style=for-the-badge&logo=java&logoColor=white"/>
+</div>
+
 # 전국의 집사들을 위한 새로운 플랫폼 - 멍냥멍냥
 
 > 삼성 멀티캠퍼스 온오프 연계 AI활용 지능형 서비스 개발과정 세미프로젝트 
 >
-> *Project* period 2020.04.21~2020.04.23
-
-
+> *Project period* 2020.04.21~2020.04.23
 
 ## 개요
 
